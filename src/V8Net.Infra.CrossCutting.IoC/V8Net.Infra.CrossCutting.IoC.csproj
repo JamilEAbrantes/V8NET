@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\V8Net.Domain\V8Net.Domain.csproj" />
+    <ProjectReference Include="..\V8Net.Infra.CrossCutting.AspNetFilters\V8Net.Infra.CrossCutting.AspNetFilters.csproj" />
+    <ProjectReference Include="..\V8Net.Infra.Data\V8Net.Infra.Data.csproj" />
+    <ProjectReference Include="..\V8Net.Shared\V8Net.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

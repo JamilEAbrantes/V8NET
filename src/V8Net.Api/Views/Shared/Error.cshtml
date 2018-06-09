@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = @"Opss.. Ocorreu um erro! ¯\_(ツ)_/¯";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>Tente novamente, ou, contate o administrador do sistema.</h2>
+
+@{
+    if (ViewData["MensagemErro"] != null)
+    {
+        <br />
+        <h3>Maiores detalhes:</h3>
+        <p>
+            <span>@ViewData["MensagemErro"]</span>
+        </p>
+    }
+}

@@ -112,10 +112,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "Cgc4", value: empresa.Cgc4, direction: ParameterDirection.Input);
             param.Add(name: "Cgc2", value: empresa.Cgc2, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -135,10 +132,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "Cgc4", value: empresa.Cgc4, direction: ParameterDirection.Input);
             param.Add(name: "Cgc2", value: empresa.Cgc2, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         public bool EmpresaExistente(int id)
@@ -166,10 +160,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
     }
 }

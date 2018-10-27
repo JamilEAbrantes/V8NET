@@ -168,10 +168,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "PerfilAcesso", value: (int)usuario.PerfilAcesso, direction: ParameterDirection.Input);
             param.Add(name: "ImpressoraZebra", value: usuario.ImpressoraZebra, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query.ToString(), param);
-            }
+            _context.Connection.Execute(query.ToString(), param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -194,10 +191,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "PerfilAcesso", value: (int)usuario.PerfilAcesso, direction: ParameterDirection.Input);
             param.Add(name: "ImpressoraZebra", value: usuario.ImpressoraZebra, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query.ToString(), param);
-            }            
+            _context.Connection.Execute(query.ToString(), param);
         }
 
         public void Excluir(int id)
@@ -210,13 +204,10 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(queryUsuarioEmpresa, param);
-                ctx.Execute(queryUsuarioAtuacao, param);
-                ctx.Execute(queryUsuarioTela, param);
-                ctx.Execute(queryUsuario, param);
-            }
+            _context.Connection.Execute(queryUsuarioEmpresa, param);
+            _context.Connection.Execute(queryUsuarioAtuacao, param);
+            _context.Connection.Execute(queryUsuarioTela, param);
+            _context.Connection.Execute(queryUsuario, param);
         }
 
         public bool DocumentoExistente(string documento)
@@ -281,12 +272,9 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "SenhaTemporaria", value: senha, direction: ParameterDirection.Input);
             param.Add(name: "DataCadastro", value: DateTime.Now, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query01, param);
-                ctx.Execute(query02, param);
-                ctx.Execute(query03, param);
-            }
+            _context.Connection.Execute(query01, param);
+            _context.Connection.Execute(query02, param);
+            _context.Connection.Execute(query03, param);
         }
 
         public BuscarUsuarioSenhaTemporariaQueryResult BuscarUsuarioSenhaTemporaria(int id)
@@ -349,18 +337,14 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
 
         public void SalvarUsuarioEmpresa(UsuarioEmpresa usuarioEmpresa)
         {
-            var query = new StringBuilder();
-            query.Append("INSERT INTO UsuariosEmpresas (IdUsuario, IdEmpresa) VALUES (:IdUsuario, :IdEmpresa) returning Id into :Id");
+            var query = @"INSERT INTO UsuariosEmpresas (IdUsuario, IdEmpresa) VALUES (:IdUsuario, :IdEmpresa) returning Id into :Id";
 
             var param = new DynamicParameters();
             param.Add(name: "Id", value: usuarioEmpresa.Id, direction: ParameterDirection.Input);
             param.Add(name: "IdUsuario", value: usuarioEmpresa.IdUsuario, direction: ParameterDirection.Input);
             param.Add(name: "IdEmpresa", value: usuarioEmpresa.IdEmpresa, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query.ToString(), param);
-            }
+            _context.Connection.Execute(query, param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -401,10 +385,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         #endregion
@@ -459,10 +440,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "IdUsuario", value: areaAtuacao.Usuario.Id, direction: ParameterDirection.Input);
             param.Add(name: "IdAreaAtuacao", value: areaAtuacao.AreaAtuacao.Id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -503,10 +481,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         #endregion
@@ -631,10 +606,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "Consultar", value: (int)usuarioTela.Consultar, direction: ParameterDirection.Input);
             param.Add(name: "DataCadastro", value: usuarioTela.DataCadatro, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -653,10 +625,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "Excluir", value: (int)usuarioTela.Excluir, direction: ParameterDirection.Input);
             param.Add(name: "Consultar", value: (int)usuarioTela.Consultar, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         public bool UsuarioTelaExistente(int idUsuario, int idTela)
@@ -694,10 +663,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         #endregion

@@ -93,7 +93,7 @@ namespace V8Net.Api
                 x.AllowAnyOrigin();
             });
             app.UseMvc();
-            app.UseResponseCompression();            
+            app.UseResponseCompression();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

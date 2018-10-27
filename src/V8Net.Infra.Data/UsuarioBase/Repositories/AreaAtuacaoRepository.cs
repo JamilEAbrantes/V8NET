@@ -94,10 +94,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "DataCadastro", value: areaAtuacao.DataCadastro, direction: ParameterDirection.Input);
             param.Add(name: "Ativo", value: (int)areaAtuacao.Ativo, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query.ToString(), param);
-            }
+            _context.Connection.Execute(query.ToString(), param);
 
             // Retorno do id gerado na base
             //var Id = param.Get<int>("Id");
@@ -116,10 +113,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             param.Add(name: "Descricao", value: areaAtuacao.Descricao, direction: ParameterDirection.Input);
             param.Add(name: "Ativo", value: (int)areaAtuacao.Ativo, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query.ToString(), param);
-            }
+            _context.Connection.Execute(query.ToString(), param);
         }
 
         public void Excluir(int id)
@@ -129,10 +123,7 @@ namespace V8Net.Infra.Data.UsuarioBase.Repositories
             var param = new DynamicParameters();
             param.Add(name: "Id", value: id, direction: ParameterDirection.Input);
 
-            using (IDbConnection ctx = _context.Connection)
-            {
-                ctx.Execute(query, param);
-            }
+            _context.Connection.Execute(query, param);
         }
 
         public bool AreaAtuacaoExistente(string nome)
